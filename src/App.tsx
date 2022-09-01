@@ -28,6 +28,8 @@ function App() {
     fetchPropertyData();
   }, []);
 
+  console.log(filteredSearchResults.length);
+  console.log(searchInputTerm.length);
   return (
     <div className='container mx-auto my-5'>
       <Header
@@ -39,7 +41,14 @@ function App() {
         setSearchInputTerm={setSearchInputTerm}
       />
 
+      {searchInputTerm.length > 0 && filteredSearchResults.length === 0 && (
+        <div className='grid place-items-center mt-20 text-2xl'>
+          There are no properties matching your search.
+        </div>
+      )}
+
       <div className='grid  grid-cols-1 gap-4  mt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+        {/*properties filter when search box has at least 2 characters */}
         {searchInputTerm.length > 1 &&
           filteredSearchResults.map((property) => (
             <PropertyCard
@@ -50,8 +59,21 @@ function App() {
               setPropertyDescription={setPropertyDescription}
             />
           ))}
+        {/*default view when app mounts */}
         {properties &&
           searchInputTerm.length < 1 &&
+          properties.map((property) => (
+            <PropertyCard
+              key={property.property_id}
+              property={property}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              setPropertyDescription={setPropertyDescription}
+            />
+          ))}
+        {/*prevents empty results when user has a single letter as the searchbox */}
+        {properties &&
+          searchInputTerm.length === 1 &&
           properties.map((property) => (
             <PropertyCard
               key={property.property_id}

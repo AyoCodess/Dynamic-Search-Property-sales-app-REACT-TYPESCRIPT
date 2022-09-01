@@ -19,17 +19,17 @@ export const SearchBox = ({
   setSearchInputTerm,
 }: Props) => {
   const FilterPropertyByTerm = (term: string) => {
-    console.log('searched term:', term);
+    // console.log('searched term:', term);
     setSearchInputTerm(term);
 
     if (searchInputTerm !== '') {
-      const filteredProperties = properties.filter((property) => {
-        return property.short_description
+      const filteredProperties = properties.filter((property) =>
+        property.short_description
           .split(' ')
           .join(' ')
           .toLowerCase()
-          .includes(term.toLowerCase());
-      });
+          .includes(term.toLowerCase())
+      );
 
       setFilteredSearchResults(filteredProperties);
     }
