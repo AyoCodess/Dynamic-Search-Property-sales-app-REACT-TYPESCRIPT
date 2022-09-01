@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Header, PropertyCard, SearchBox, Modal } from './components';
+import { Header, PropertyCard, Modal } from './components';
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
@@ -13,9 +13,7 @@ function App() {
   const [filteredSearchResults, setFilteredSearchResults] = useState<any[]>([]);
 
   // use this state to keep track of the user's saved/bookmarked properties
-  const [savedProperties, setSavedProperties] = useState<any[] | undefined>([
-    undefined,
-  ]);
+  const [savedProperties, setSavedProperties] = useState<any[] | undefined>([]);
 
   useEffect(() => {
     const fetchPropertyData = async () => {
@@ -28,8 +26,8 @@ function App() {
     fetchPropertyData();
   }, []);
 
-  console.log(filteredSearchResults.length);
-  console.log(searchInputTerm.length);
+  console.log(savedProperties);
+
   return (
     <div className='container mx-auto my-5'>
       <Header
@@ -57,6 +55,7 @@ function App() {
               openModal={openModal}
               setOpenModal={setOpenModal}
               setPropertyDescription={setPropertyDescription}
+              setSavedProperties={setSavedProperties}
             />
           ))}
         {/*default view when app mounts */}
@@ -69,6 +68,7 @@ function App() {
               openModal={openModal}
               setOpenModal={setOpenModal}
               setPropertyDescription={setPropertyDescription}
+              setSavedProperties={setSavedProperties}
             />
           ))}
         {/*prevents empty results when user has a single letter as the searchbox */}
@@ -81,6 +81,7 @@ function App() {
               openModal={openModal}
               setOpenModal={setOpenModal}
               setPropertyDescription={setPropertyDescription}
+              setSavedProperties={setSavedProperties}
             />
           ))}
       </div>

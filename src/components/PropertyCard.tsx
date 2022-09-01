@@ -6,15 +6,37 @@ interface Props {
   setPropertyDescription: React.Dispatch<React.SetStateAction<string>>;
   openModal: boolean;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setSavedProperties: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
 export const PropertyCard = ({
   property,
   setOpenModal,
   setPropertyDescription,
+  setSavedProperties,
 }: Props) => {
   const [openDescriptionBox, setOpenDescriptionBox] = useState(false);
+  const [isBookedMarked, setIsBookmarked] = useState(false);
   //   console.log('property:', property);
+
+  const bookmarkProperty = (properties: any) => {
+    if (!isBookedMarked) {
+      setIsBookmarked(true);
+      setSavedProperties((savedProperties) => [...savedProperties, property]);
+    }
+
+    if (isBookedMarked) {
+      console.log(property);
+      setIsBookmarked(false);
+      setSavedProperties((savedProperties) => {
+        const filteredProperties = savedProperties.filter(
+          (match) => match.property_id !== property.property_id
+        );
+        return filteredProperties;
+      });
+    }
+  };
+
   return (
     <div className='border-2 bg-gray-50 md:h-[26rem] md:w-[20rem]'>
       <div className='relative'>
@@ -31,7 +53,13 @@ export const PropertyCard = ({
         <button
           className='absolute top-0 right-2'
           title='Click to bookmark this property'>
-          <FaBookmark className='text-yellow-400' size='40' />
+          <FaBookmark
+            className={` cursor-pointer ${
+              !isBookedMarked ? 'text-yellow-400' : 'text-red-400'
+            }`}
+            size='40'
+            onClick={() => bookmarkProperty(property)}
+          />
         </button>
 
         <p className='absolute bottom-0 right-0 px-2 py-1 border-t border-l bg-gray-50'>
