@@ -8,6 +8,9 @@ function App() {
   const [propertyDescription, setPropertyDescription] = useState<
     string | undefined
   >(undefined);
+  const [searchInputTerm, setSearchInputTerm] = useState<string>('');
+
+  const [filteredSearchResults, setFilteredSearchResults] = useState<any[]>([]);
 
   // use this state to keep track of the user's saved/bookmarked properties
   const [savedProperties, setSavedProperties] = useState<any[] | undefined>([
@@ -27,10 +30,28 @@ function App() {
 
   return (
     <div className='container mx-auto my-5'>
-      <Header properties={properties} setProperties={setProperties} />
+      <Header
+        properties={properties}
+        setProperties={setProperties}
+        filteredSearchResults={filteredSearchResults}
+        setFilteredSearchResults={setFilteredSearchResults}
+        searchInputTerm={searchInputTerm}
+        setSearchInputTerm={setSearchInputTerm}
+      />
 
       <div className='grid  grid-cols-1 gap-4  mt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
-        {!!properties &&
+        {searchInputTerm.length > 1 &&
+          filteredSearchResults.map((property) => (
+            <PropertyCard
+              key={property.property_id}
+              property={property}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              setPropertyDescription={setPropertyDescription}
+            />
+          ))}
+        {properties &&
+          searchInputTerm.length < 1 &&
           properties.map((property) => (
             <PropertyCard
               key={property.property_id}

@@ -61,23 +61,22 @@ export const Modal = ({
                     <div className='mt-2 text-left'>
                       {propertyDescription && (
                         <section>
-                          {propertyDescription.split('.').map((text, i) => (
-                            <p className='mt-2' key={i}>
-                              {text}.
-                            </p>
-                          ))}
+                          {propertyDescription.split('.').map((text, i) => {
+                            return (
+                              <p className='mt-2' key={i}>
+                                {text}
+                              </p>
+                            );
+                          })}
                         </section>
                       )}
                     </div>
                   </div>
                 </div>
-                {/*footer */}
-                <div className={``}>
-                  <hr className='mx-auto w-10 border-2' />
-                  <button className='m-2 p-2 bg-gray-300 w-32 text-center rounded-md shadow'>
-                    Enquire
-                  </button>
-                </div>
+
+                <button className='m-2 p-2 bg-gray-300 w-32 text-center rounded-md shadow'>
+                  Enquire
+                </button>
               </div>
             </div>
           </Transition.Child>

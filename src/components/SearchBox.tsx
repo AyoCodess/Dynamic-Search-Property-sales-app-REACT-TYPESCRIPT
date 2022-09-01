@@ -1,20 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 interface Props {
   properties: any[];
   setProperties: React.Dispatch<React.SetStateAction<any[]>>;
+  filteredSearchResults: any[];
+  setFilteredSearchResults: React.Dispatch<React.SetStateAction<any[]>>;
+  searchInputTerm: string;
+  setSearchInputTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const SearchBox = ({ properties, setProperties }: Props) => {
+export const SearchBox = ({
+  properties,
+  setProperties,
+  filteredSearchResults,
+  setFilteredSearchResults,
+  searchInputTerm,
+  setSearchInputTerm,
+}: Props) => {
   const FilterPropertyByTerm = (term: string) => {
-    console.log('filtering properties by term:', term);
-    console.log('properties:', properties);
+    console.log('searched term:', term);
+    setSearchInputTerm(term);
+
+    if (searchInputTerm !== '') {
+      const filteredProperties = properties.filter((property) => {
+        return property.short_description
+          .split(' ')
+          .join(' ')
+          .toLowerCase()
+          .includes(term.toLowerCase());
+      });
+
+      setFilteredSearchResults(filteredProperties);
+    }
+
+    if (searchInputTerm === '') {
+      setFilteredSearchResults(properties);
+    }
   };
+
   return (
     <div className='md:mx-auto w-[25rem]  mt-5 relative md:mr-14'>
       <input
-        onChange={(e) => FilterPropertyByTerm(e.target.value)}
+        onChange={(e) => FilterPropertyByTerm(e.target.value.toLowerCase())}
         placeholder='Enter a search term'
         className='px-5 py-3 border-gray-400 border rounded w-full'
       />
