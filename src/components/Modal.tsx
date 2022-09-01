@@ -48,33 +48,42 @@ export const Modal = ({
             leave='ease-in duration-200'
             leaveFrom='opacity-100 translate-y-0 sm:scale-100'
             leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
-            <div
-              className={` w-96 bg-white justify-between inline-block align-bottom rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:min-h-[20vh] sm:w-full`}>
-              <div>
-                <div className={` px-2 pt-2 pb-4`}>
-                  <div className='flex flex-col'>
-                    <div className='flex'>
-                      <span>X</span>
-                      <p className=' w-full'>Full Property Description</p>
-                    </div>
-                    <hr className='border mt-2 w-[100vw] ml-[-2rem]' />
-                    <div className='mt-2 text-left'>
-                      {propertyDescription && (
-                        <section>
-                          {propertyDescription.split('.').map((text, i) => {
-                            return (
-                              <p className='mt-2' key={i}>
-                                {text}
-                              </p>
-                            );
-                          })}
-                        </section>
-                      )}
+            <div className='relative justify-between align-middle inline-block  '>
+              <div
+                className={`w-[22rem] max-h-[40rem] sm:w-[36rem] md:w-[43rem] lg:w-[60rem] overflow-x-hidden bg-white rounded-lg text-left shadow-xl  transform transition-all`}>
+                <div className='overflow-scroll'>
+                  <div className={` px-2 pt-2 pb-`}>
+                    <div className='flex flex-col'>
+                      <div className=''>
+                        <span
+                          className='cursor-pointer'
+                          onClick={() => setOpenModal(false)}>
+                          X
+                        </span>
+                        <p className=' w-full text-lg font-medium text-center '>
+                          Full Property Description
+                        </p>
+                      </div>
+                      <hr className='border mt-2  ml-[-2rem]' />
+                      <div className='mt-2 text-left mb-2'>
+                        {propertyDescription && (
+                          <section className='px-2'>
+                            {propertyDescription.split('.').map((text, i) => {
+                              return (
+                                <p className='mt-2' key={i}>
+                                  {text}
+                                </p>
+                              );
+                            })}
+                          </section>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <button className='m-2 p-2 bg-gray-300 w-32 text-center rounded-md shadow'>
+              </div>
+              <div className='w-full flex'>
+                <button className=' mt-2 p-2 bg-gray-300 w-32 text-center rounded-md shadow '>
                   Enquire
                 </button>
               </div>

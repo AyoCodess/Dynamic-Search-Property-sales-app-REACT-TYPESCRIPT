@@ -15,9 +15,8 @@ export const PropertyCard = ({
   setPropertyDescription,
   setSavedProperties,
 }: Props) => {
-  const [openDescriptionBox, setOpenDescriptionBox] = useState(false);
+  const [openDescriptionBox] = useState(false);
   const [isBookedMarked, setIsBookmarked] = useState(false);
-  //   console.log('property:', property);
 
   const bookmarkProperty = (properties: any) => {
     if (!isBookedMarked) {
@@ -26,7 +25,6 @@ export const PropertyCard = ({
     }
 
     if (isBookedMarked) {
-      console.log(property);
       setIsBookmarked(false);
       setSavedProperties((savedProperties) => {
         const filteredProperties = savedProperties.filter(
@@ -61,12 +59,10 @@ export const PropertyCard = ({
             onClick={() => bookmarkProperty(property)}
           />
         </button>
-
         <p className='absolute bottom-0 right-0 px-2 py-1 border-t border-l bg-gray-50'>
           {property.price}
         </p>
       </div>
-
       <div className='px-3 py-2 text-sm'>
         <p>{property.display_address}</p>
       </div>

@@ -4,7 +4,7 @@ import { Header, PropertyCard, Modal } from './components';
 
 function App() {
   const [openModal, setOpenModal] = useState(false);
-  const [properties, setProperties] = useState<any[] | undefined>(undefined);
+  const [properties, setProperties] = useState<any[]>([]);
   const [propertyDescription, setPropertyDescription] = useState<
     string | undefined
   >(undefined);
@@ -13,7 +13,7 @@ function App() {
   const [filteredSearchResults, setFilteredSearchResults] = useState<any[]>([]);
 
   // use this state to keep track of the user's saved/bookmarked properties
-  const [savedProperties, setSavedProperties] = useState<any[] | undefined>([]);
+  const [savedProperties, setSavedProperties] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchPropertyData = async () => {
@@ -25,8 +25,6 @@ function App() {
 
     fetchPropertyData();
   }, []);
-
-  console.log(savedProperties);
 
   return (
     <div className='container mx-auto my-5'>
@@ -45,7 +43,7 @@ function App() {
         </div>
       )}
 
-      <div className='grid  grid-cols-1 gap-4  mt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+      <main className='grid  grid-cols-1 gap-4  mt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
         {/*properties filter when search box has at least 2 characters */}
         {searchInputTerm.length > 1 &&
           filteredSearchResults.map((property) => (
@@ -84,7 +82,7 @@ function App() {
               setSavedProperties={setSavedProperties}
             />
           ))}
-      </div>
+      </main>
       <Modal
         openModal={openModal}
         setOpenModal={setOpenModal}

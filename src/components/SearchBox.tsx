@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 interface Props {
@@ -12,14 +12,11 @@ interface Props {
 
 export const SearchBox = ({
   properties,
-  setProperties,
-  filteredSearchResults,
   setFilteredSearchResults,
   searchInputTerm,
   setSearchInputTerm,
 }: Props) => {
   const FilterPropertyByTerm = (term: string) => {
-    // console.log('searched term:', term);
     setSearchInputTerm(term);
 
     if (searchInputTerm !== '') {
@@ -40,7 +37,7 @@ export const SearchBox = ({
   };
 
   return (
-    <div className='md:mx-auto w-[25rem]  mt-5 relative md:mr-14'>
+    <div className='md:mx-auto w-[15rem] sm:w-[20rem]   mt-5 relative md:mr-14'>
       <input
         onChange={(e) => FilterPropertyByTerm(e.target.value.toLowerCase())}
         placeholder='Enter a search term'
