@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <div className='container mx-auto my-5'>
+    <div className='container mx-auto  my-5'>
       <Header
         properties={properties}
         setProperties={setProperties}
@@ -39,14 +39,14 @@ function App() {
       />
 
       {searchInputTerm.length > 0 && filteredSearchResults.length === 0 && (
-        <div className='grid place-items-center mt-20 text-2xl '>
+        <div className='grid place-items-center mt-20 text-2xl  '>
           <p className='text-center  px-4'>
             There are no properties matching your search.
           </p>
         </div>
       )}
 
-      <main className='grid  grid-cols-1 gap-4  mt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
+      <main className=' grid  grid-cols-1 gap-4  mt-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 '>
         {/*properties filter when search box has at least 2 characters */}
         {searchInputTerm.length > 1 &&
           filteredSearchResults.map((property) => (

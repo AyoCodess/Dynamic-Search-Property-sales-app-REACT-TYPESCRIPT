@@ -22,7 +22,7 @@ export const Header = ({
 }: Props) => {
   return (
     <header className='flex flex-col md:flex-row justify-between ml-6 mx-auto '>
-      <div className='flex flex-col'>
+      <div className='flex flex-col '>
         <h1 className='text-6xl sm:text-8xl'>Posh Properties</h1>
         <div className='flex items-center  gap-2 p-2 shadow bg-gray-100 w-44 h-10 mt-5'>
           <p className='italic font-medium'>Saved Properties</p>

@@ -36,7 +36,7 @@ export const PropertyCard = ({
   };
 
   return (
-    <div className='border-2 bg-gray-50 md:h-[26rem] md:w-[20rem]'>
+    <div className='border-2 bg-gray-50 md:h-[26rem] md:w-[20rem] '>
       <div className='relative'>
         <img
           className='md:h-[15rem] md:w-[20rem] sm:object-cover'
