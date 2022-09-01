@@ -1,6 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 
 import React, { useRef, Fragment } from 'react';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 interface Props {
   openModal: boolean;
@@ -54,12 +55,12 @@ export const Modal = ({
                 <div className='overflow-scroll'>
                   <div className={` px-2 pt-2 pb-`}>
                     <div className='flex flex-col'>
-                      <div className=''>
-                        <span
-                          className='cursor-pointer'
-                          onClick={() => setOpenModal(false)}>
-                          X
-                        </span>
+                      <div className='flex items-center'>
+                        <XMarkIcon
+                          className='cursor-pointer h-6'
+                          onClick={() => setOpenModal(false)}
+                        />
+
                         <p className=' w-full text-lg font-medium text-center '>
                           Full Property Description
                         </p>

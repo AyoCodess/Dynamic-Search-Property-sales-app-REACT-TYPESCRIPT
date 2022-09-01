@@ -31,6 +31,7 @@ function App() {
       <Header
         properties={properties}
         setProperties={setProperties}
+        savedProperties={savedProperties}
         filteredSearchResults={filteredSearchResults}
         setFilteredSearchResults={setFilteredSearchResults}
         searchInputTerm={searchInputTerm}
@@ -38,8 +39,10 @@ function App() {
       />
 
       {searchInputTerm.length > 0 && filteredSearchResults.length === 0 && (
-        <div className='grid place-items-center mt-20 text-2xl'>
-          There are no properties matching your search.
+        <div className='grid place-items-center mt-20 text-2xl '>
+          <p className='text-center  px-4'>
+            There are no properties matching your search.
+          </p>
         </div>
       )}
 
